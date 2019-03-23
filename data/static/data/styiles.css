@@ -68,7 +68,9 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+.session_buttons{
 
+}
 .loginout {
     height: 100%;
     display: flex;
