@@ -9,8 +9,19 @@ class SessionsView(ListView):
     context_object_name = 'list_sessions'
     template_name = "data/home.html"
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(SessionsView, self).get_context_data(**kwargs)
+        context['title'] = "Home"
+
 
 class SessionView(DetailView):
     model = Session
-    context_object_name = 'context'
-    template_name = '/data/session.html'
+    context_object_name = 'session'
+    template_name = 'data/session.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(SessionView, self).get_context_data(**kwargs)
+        context['title'] = context['session'].name
+        return context
+
+
