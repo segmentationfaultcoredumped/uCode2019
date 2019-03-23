@@ -34,14 +34,28 @@
     </div>
   </div>
   <div class="col-xs-12 col-md-8 pad">
-  {% for athlete in list_athletes %}
+  {% for athlete in athletes %}
       <article class="media content-section">
         <div class="media-body">
           <h2><a class="article-title" href="{% url 'detail-athlete' athlete.id %}">{{ athlete.id }} {{ athlete.name }}</a></h2>
-          <p class="article-content">{{ session.training }}</p>
+          <div class="col-xs-12 col-md-6">
+            <label>Vest:{{ athlete.vest }}</label>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <label>Age:{{ athlete.age }}</label>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <label>Weight:{{ athlete.weight }}</label>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <label>Height:{{ athlete.height }}</label>
+          </div>
         </div>
       </article>
   {% endfor %}
+  </div>
+  <div class="col-xs-12">
+    <button type="button" class="btn fa-plus" name="add_athlete">Add Athlete</button>
   </div>
 </div>
 {% endblock content%}
