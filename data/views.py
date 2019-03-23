@@ -16,6 +16,7 @@ class SessionsView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(SessionsView, self).get_context_data(**kwargs)
         context['title'] = "Home"
+        return context
 
 
 class SessionView(DetailView):
