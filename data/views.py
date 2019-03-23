@@ -44,6 +44,7 @@ class AthleteView(LoginRequiredMixin, DetailView):
         context['title'] = context['athlete'].nickname
         context['sensors_of_athlete'] = SensorAthlete.objects.filter(id_athlete=context['athlete'])
         context['vests_of_athlete'] = AthleteVest.objects.filter(id_athlete=context['athlete'])
+        print(context)
         return context
 
 
@@ -71,6 +72,11 @@ class SessionDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class SensorCreateView(LoginRequiredMixin, CreateView):
+    model = Sensor
+    fields = 'code'
+
+
+class SensorAssignView(LoginRequiredMixin, CreateView):
     model = Sensor
     fields = 'code'
 

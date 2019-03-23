@@ -5,15 +5,15 @@ from .views import SessionView
 from .views import SessionEditView
 from .views import SessionDeleteView
 from .views import SensorView
-from.views import SensorDeleteView
-from.views import SensorEditView
+from .views import SensorDeleteView
+from .views import SensorEditView
 from .views import SessionCreateView
 from .views import AthleteCreateView
 from .views import AthleteEditView
 from .views import AthleteDeleteView
 from .views import SensorCreateView
 from .views import AthleteView
-
+from .views import SensorAssignView
 
 urlpatterns = [
     path('', SessionsView.as_view(), name='home'),
@@ -28,5 +28,6 @@ urlpatterns = [
     path('sensors/new/', SensorCreateView.as_view(), name='new-sensor'),
     path('sensors/<int:pk>/', SensorView.as_view(), name='detail-sensor'),
     path('sensors/<int:pk>/del/', SensorDeleteView.as_view(), name='del-sensor'),
-    path('sensors/<int:pk>/edit/', SensorEditView.as_view(), name='edit-sensor')
+    path('sensors/<int:pk>/edit/', SensorEditView.as_view(), name='edit-sensor'),
+    path('sensors/sensor/assign/', SensorAssignView.as_view(), name='assign-sensor')
 ]

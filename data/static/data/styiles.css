@@ -21,6 +21,11 @@
 #delete_athlete{
   font-size: 19px;
 }
+
+.small-ref a:hover {
+  color: #333;
+  text-decoration: none;
+}
 .content-section {
   background: #ffffff;
   padding: 10px 20px;

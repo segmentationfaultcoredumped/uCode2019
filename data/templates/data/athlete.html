@@ -1,0 +1,24 @@
+{% extends "data/base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-xs-12 col-md-8 pad">
+        {% for sensor in sensors_of_athlete %}
+            <article class="media content-section">
+              <div class="media-body">
+                <div class="article-metadata">
+                    <a href="{% url 'edit-sensor' sensor.id %}" class="ref"><small class="text-muted">Edit</small></a>
+                    <a href="{% url 'del-sensor' sensor.id %}" class="pull-right ref"><small class="text-muted">Delete</small></a>
+                </div>
+                <h2><a class="article-title" href="{% url 'detail-sensor' sensor.id %}">{{ sensor.position }}</a></h2>
+
+              </div>
+            </article>
+        {% endfor %}
+    </div>
+    <div class="col-md-4 pad">
+        <div id="manage-sensor" class="col-xs-12">
+            <a href="{% url 'new-sensor' %}" class="btn btn-secondary btn-lg btn-block">Add new sensor</a>
+            <a href="{% url 'assign-sensor' %}" class="btn btn-secondary btn-lg btn-block">Assign sensor</a>
+        </div>
+    </div>
+</div>{% endblock content %}
