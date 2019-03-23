@@ -6,8 +6,12 @@
 }
 #home{
   padding: 5px;
-  color: #FFFFFF
+  color: #FFFFFF;
 }
 #perfil{
   padding: 2px;
+}
+
+.pad{
+  padding-top: 20px;
 }
