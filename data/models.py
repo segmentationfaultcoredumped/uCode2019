@@ -6,7 +6,7 @@ from django.urls import reverse
 
 
 class Session(models.Model):
-    BOOL_CHOICES = ((True, 'Natural'), (False, 'Artificial'))
+    BOOL_CHOICES = ((0, 'Natural'), (1, 'Artificial'), (2, 'Street'))
 
     # General info
     name = models.CharField(max_length=64)
@@ -14,18 +14,18 @@ class Session(models.Model):
     date = models.DateField(default=datetime.date.today)
     place = models.CharField(max_length=32, blank=True)
     # Environment conditions
-    grass = models.BooleanField(choices=BOOL_CHOICES, blank=True)
+    grass = models.IntegerField(choices=BOOL_CHOICES, blank=True)
     wet = models.BooleanField(blank=True)
-    temp = models.IntegerField(blank=True)
-    hum = models.IntegerField(blank=True)
+    temp = models.PositiveIntegerField(blank=True)
+    hum = models.PositiveIntegerField(blank=True)
     additional_info = models.TextField(max_length=240, blank=True)
 
     def __str__(self):
         return "id:{0} name:{1}".format(str(self.pk), str(self.name))
-'''
+
     def get_absolute_url(self):
         return reverse('detail-session', kwargs={'pk': self.pk})
-'''
+
 
 class Athlete(models.Model):
     # General data
@@ -33,10 +33,10 @@ class Athlete(models.Model):
     session = models.ForeignKey(Session, on_delete=models.CASCADE)
     data_consent = models.BooleanField()
     # Interest data
-    age = models.IntegerField()
-    foot_size = models.IntegerField()
-    weight = models.IntegerField(help_text="Weight in Kg")
-    height = models.IntegerField(help_text="Height in cm")
+    age = models.PositiveIntegerField()
+    foot_size = models.PositiveIntegerField()
+    weight = models.PositiveIntegerField(help_text="Weight in Kg")
+    height = models.PositiveIntegerField(help_text="Height in cm")
 
     def __str__(self):
         return "session:{0} name:{1}".format(str(self.session), str(self.nickname))
