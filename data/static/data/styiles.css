@@ -1,17 +1,13 @@
 #header{
-  col-xs-12;
   background-color: #1e1e1e;
 }
 #logo{
-  col-xs-2;
   padding: 5px;
 }
 #home{
-  col-xs-2;
   padding: 5px;
   color: #FFFFFF
 }
 #perfil{
-  col-xs-3;
   padding: 2px;
 }
