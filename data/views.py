@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Session
 from .models import Athlete
 from .models import AthleteVest
@@ -31,3 +32,41 @@ class SessionView(DetailView):
         return context
 
 
+class SensorDeleteView(DeleteView):
+    pass
+
+
+class AthleteDeleteView(DeleteView):
+    pass
+
+
+class SessionDeleteView(DeleteView):
+    pass
+
+
+class SensorCreateView(CreateView):
+    pass
+
+
+class AthleteCreateView(CreateView):
+    pass
+
+
+class SessionCreateView(CreateView):
+    pass
+
+
+class SessionEditView(UpdateView):
+    pass
+
+
+class AthleteEditView(UpdateView):
+    pass
+
+
+class SensorEditView(UpdateView):
+    pass
+
+
+class SessionUpdateView(UpdateView):
+    pass
