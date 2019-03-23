@@ -32,6 +32,17 @@ class SessionView(DetailView):
         return context
 
 
+class AthleteView(DetailView):
+    model = Athlete
+    context_object_name = 'athlete'
+    template_name = 'data/athlete.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(SessionView, self).get_context_data(**kwargs)
+        context['title'] = context['athlete'].nickname
+        context['sensors_of_athlete'] = SensorAthlete.objects.filter(id_athlete=context['athlete'])
+        return context
+
 class SensorDeleteView(DeleteView):
     pass
 
