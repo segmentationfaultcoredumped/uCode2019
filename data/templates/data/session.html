@@ -37,7 +37,7 @@
   {% for athlete in athletes %}
       <article class="media content-section">
         <div class="col-xs-12 col-md-12 col-lg-12">
-          <h2><a class="article-title" href="{% url 'detail-athlete' athlete.id %}">{{ athlete.id }} {{ athlete.nickname }}</a></h2>
+          <h2><a class="article-title" href="{% url 'detail-athlete' athlete.id %}">{{ athlete.nickname }}</a></h2>
         <div class="media-body col-xs-12 col-md-12 col-lg-12 row">
             <div class="col-xs-12 col-md-6 col-lg-6">
               <label>Vest: {{ athlete.vest }}</label>
