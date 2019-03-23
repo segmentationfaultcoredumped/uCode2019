@@ -1,6 +1,9 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from extra_views import CreateWithInlinesView, UpdateWithInlinesView, InlineFormSet
 from .models import Session
 from .models import Athlete
 from .models import AthleteVest
@@ -41,43 +44,67 @@ class AthleteView(DetailView):
         context = super(SessionView, self).get_context_data(**kwargs)
         context['title'] = context['athlete'].nickname
         context['sensors_of_athlete'] = SensorAthlete.objects.filter(id_athlete=context['athlete'])
+        context['vests_of_athlete'] = AthleteVest.objects.filter(id_athlete=context['athlete'])
         return context
 
-class SensorDeleteView(DeleteView):
-    pass
+
+class SensorView(DetailView):
+    model = Sensor
+    context_object_name = 'sensor'
+    template_name = 'data/sensor.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SensorView, self).get_context_data(**kwargs)
+        context['title'] = context['sensor'].code
+        return context
 
 
-class AthleteDeleteView(DeleteView):
-    pass
+class SensorDeleteView(LoginRequiredMixin, DeleteView):
+    model = Sensor
 
 
-class SessionDeleteView(DeleteView):
-    pass
+class AthleteDeleteView(LoginRequiredMixin, DeleteView):
+    model = Athlete
 
 
-class SensorCreateView(CreateView):
-    pass
+class SessionDeleteView(LoginRequiredMixin, DeleteView):
+    model = Session
 
 
-class AthleteCreateView(CreateView):
-    pass
+class SensorCreateView(LoginRequiredMixin, CreateView):
+    model = Sensor
+    fields = 'code'
 
 
-class SessionCreateView(CreateView):
-    pass
+class SensorAthleteInline(InlineFormSet):
+    model = SensorAthlete
 
 
-class SessionEditView(UpdateView):
-    pass
+class AthleteVestInline(InlineFormSet):
+    model = AthleteVest
 
 
-class AthleteEditView(UpdateView):
-    pass
+class AthleteCreateView(CreateWithInlinesView):
+    model = Athlete
+    inlines = [AthleteVest, SensorAthlete]
 
 
-class SensorEditView(UpdateView):
-    pass
+class SessionCreateView(LoginRequiredMixin, CreateView):
+    model = Session
+    fields = ('name', 'training', 'date', 'place', 'grass', 'wet', 'temp', 'hum', 'additional_info')
 
 
-class SessionUpdateView(UpdateView):
-    pass
+class SessionEditView(LoginRequiredMixin, UpdateView):
+    model = Session
+    fields = ('name', 'training', 'date', 'place', 'grass', 'wet', 'temp', 'hum', 'additional_info')
+
+
+class AthleteEditView(UpdateWithInlinesView):
+    model = Athlete
+    inlines = [AthleteVest, SensorAthlete]
+
+
+class SensorEditView(LoginRequiredMixin, UpdateView):
+    model = Sensor
+    fields = 'code'
+
