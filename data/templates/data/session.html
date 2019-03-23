@@ -18,7 +18,7 @@
         <label>Weather:   {{weather}}</label>
       </div>
       <div class="col-xs-12">
-        <label>Humidity:   {{Humidity}}</label>
+        <label>Humidity:   {{humidity}}</label>
       </div>
       <div class="col-xs-12">
         <label>Wind:   {{wind}}</label>
@@ -33,39 +33,15 @@
       </div>
     </div>
   </div>
-  <div class="col-xs-12 col-md-12 pad">
-    <div class="col-xs-12 col-md-12">
-      <table class="table table-striped table-bordered" id="player-table">
-          <thead>
-              <tr>
-                  <th>Athlete Id</th>
-                  <th>Athlete Name</th>
-                  <th>Right Sensor</th>
-                  <th>Left Sensor</th>
-                  <th>Age</th>
-                  <th>Foot</th>
-                  <th>Weight</th>
-                  <th>Height</th>
-                  <th>LOPD</th>
-              </tr>
-          </thead>
-          <tbody>
-              {% for athlete in list_athletes %}
-                  <tr>
-                      <td>{{ athlete.id }}</td>
-                      <td>{{ athlete.name }}</td>
-                      <td>{{ athlete.right }}</td>
-                      <td>{{ athlete.left }}</td>
-                      <td>{{ athlete.age }}</td>
-                      <td>{{ athlete.foot }}</td>
-                      <td>{{ athlete.weight }}</td>
-                      <td>{{ athlete.height }}</td>
-                      <td>{{ athlete.lopd }}</td>
-                  </tr>
-              {% endfor %}
-          </tbody>
-      </table>
-    </div>
+  <div class="col-xs-12 col-md-8 pad">
+  {% for athlete in list_athletes %}
+      <article class="media content-section">
+        <div class="media-body">
+          <h2><a class="article-title" href="{% url 'detail-athlete' athlete.id %}">{{ athlete.id }} {{ athlete.name }}</a></h2>
+          <p class="article-content">{{ session.training }}</p>
+        </div>
+      </article>
+  {% endfor %}
   </div>
 </div>
 {% endblock content%}
