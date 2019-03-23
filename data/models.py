@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+from django.urls import reverse
 
 # Create your models here.
 
@@ -21,7 +22,10 @@ class Session(models.Model):
 
     def __str__(self):
         return "id:{0} name:{1}".format(str(self.pk), str(self.name))
-
+'''
+    def get_absolute_url(self):
+        return reverse('detail-session', kwargs={'pk': self.pk})
+'''
 
 class Athlete(models.Model):
     # General data
@@ -37,12 +41,18 @@ class Athlete(models.Model):
     def __str__(self):
         return "session:{0} name:{1}".format(str(self.session), str(self.nickname))
 
+    def get_absolute_url(self):
+        return reverse('detail-athlete', kwargs={'pk': self.pk})
+
 
 class Sensor(models.Model):
     code = models.CharField(max_length=32)
 
     def __str__(self):
         return "code:{0}".format(str(self.code))
+
+    def get_absolute_url(self):
+        return reverse('detail-sensor', kwargs={'pk': self.pk})
 
 
 class SensorAthlete(models.Model):
