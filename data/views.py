@@ -6,8 +6,8 @@ from .models import Session
 # Create your views here.
 class SessionsView(ListView):
     model = Session
-    context_object_name = 'context'
-    template_name = '/data/home.html'
+    context_object_name = 'list_sessions'
+    template_name = "data/home.html"
 
 
 class SessionView(DetailView):
