@@ -1,5 +1,5 @@
 # uCode2019
-!!Adidas scanner!! es una aplicación web diseñada para facilitar 
+AdidasLab es una aplicación web diseñada para facilitar 
 el trabajo manual a los trabajadores de adidas durante sus
 sesiones de investigación con voluntarios. Permite recoger
 de forma sencilla los datos de cada sesión, junto con los de
@@ -21,10 +21,17 @@ Se pueden encontrar los prerequisitos en [requeriments.txt](./requirements.txt)
     ``bash ./tools/bbdd/ddbb_generator.sh``
 
 ##Tecnologías
-Django 2.1.7
+Django 2.1.7\
+Markdown\
+Heroku\
+Gunicorn\
+White noise\
+MLearnin
+
+
 
 ##Autores
-Ian Palacín Aliana\
-Joan Palau Oncins\
-Joaquim Picó Mora\
-Sergi Simón Balcells
+[Ian Palacín Aliana](https://github.com/horno)\
+[Joan Palau Oncins](https://github.com/JoanPalau)\
+[Joaquim Picó Mora](https://github.com/Kimetix99)\
+[Sergi Simón Balcells](https://github.com/Kekino99)
