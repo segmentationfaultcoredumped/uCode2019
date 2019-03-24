@@ -14,10 +14,10 @@ class Session(models.Model):
     date = models.DateField(default=datetime.date.today)
     place = models.CharField(max_length=32, blank=True)
     # Environment conditions
-    grass = models.IntegerField(choices=CHOICES, blank=True)
-    wet = models.BooleanField(blank=True)
-    temp = models.PositiveIntegerField(blank=True)
-    hum = models.PositiveIntegerField(blank=True)
+    grass = models.IntegerField('Surface', choices=CHOICES)
+    wet = models.BooleanField('Surface was wet', blank=True)
+    temp = models.PositiveIntegerField('Temperature', blank=True)
+    hum = models.PositiveIntegerField('Humidity', blank=True)
     additional_info = models.TextField(max_length=240, blank=True)
 
     def __str__(self):
