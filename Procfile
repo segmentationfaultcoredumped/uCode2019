@@ -1,1 +1,1 @@
-web: gunicorn paquipalla.wsgi
+web: gunicorn workflow.wsgi
