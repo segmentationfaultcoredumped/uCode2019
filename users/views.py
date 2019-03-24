@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def profile(request):
     context = {
-        'title': request.user.name,
+        'title': request.user.username,
     }
     return render(request, 'users/profile.html', context)
 
