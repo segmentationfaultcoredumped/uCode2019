@@ -1,5 +1,26 @@
 {% extends "data/base.html" %}
 {% block content %}
+
+<div class="col-xs-12 col-md-12 col-lg-12" style="padding:15px">
+  <h2>{{ athlete.nickname }}</h2>
+</div>
+  <div class="col-xs-12 col-md-12 col-lg-12 pad row" style="padding:15px;">
+    <div class="col-xs-12 col-md-4 col-lg-4">
+      <label>Session: {{ athlete.session.name }}</label>
+    </div>
+    <div class="col-xs-12 col-md-4 col-lg-4">
+      <label>Age: {{ athlete.age }}</label>
+    </div>
+    <div class="col-xs-12 col-md-4 col-lg-4">
+      <label>Foot Size: {{ athlete.foot_size }}</label>
+    </div>
+    <div class="col-xs-12 col-md-4 col-lg-4">
+      <label>Weight: {{ athlete.weight }}</label>
+    </div>
+    <div class="col-xs-12 col-md-4 col-lg-4">
+      <label>Height: {{ athlete.height }}</label>
+    </div>
+  </div>
 <div class="row">
     <div class="col-xs-12 col-md-8 pad">
         {% for sensor in sensors_of_athlete %}
@@ -17,8 +38,9 @@
     </div>
     <div class="col-md-4 pad">
         <div id="manage-sensor" class="col-xs-12">
-            <a href="{% url 'new-sensor' %}" class="btn btn-secondary btn-lg btn-block">Add new sensor</a>
-            <a href="{% url 'assign-sensor' %}" class="btn btn-secondary btn-lg btn-block">Assign sensor</a>
+            <a href="{% url 'new-sensor' %}" class="btn btn-dark btn-lg btn-block">Add new sensor</a>
+            <a href="{% url 'assign-sensor' %}" class="btn btn-dark btn-lg btn-block">Assign sensor</a>
         </div>
     </div>
-</div>{% endblock content %}
+</div>
+{% endblock content %}
