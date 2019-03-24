@@ -89,9 +89,10 @@ WSGI_APPLICATION = 'workflow.wsgi.application'
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': 'postgres',
-         'USER': 'postgres',
-         'HOST': 'db',
+         'NAME': 'd8092i2808rnvo',
+         'USER': 'ygfoujgpwjzorc',
+         'PASSWORD': '6d20c4060ef117561f2decaa6d72651513fbf3ce123eb9b1e02daed1cd508ff3',
+         'HOST': 'ec2-54-197-232-203.compute-1.amazonaws.com',
          'PORT': 5432,
      }
  }
