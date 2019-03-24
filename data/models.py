@@ -6,7 +6,7 @@ from django.urls import reverse
 
 
 class Session(models.Model):
-    BOOL_CHOICES = ((0, 'Natural'), (1, 'Artificial'), (2, 'Street'))
+    CHOICES = ((0, 'Natural'), (1, 'Artificial'), (2, 'Street'))
 
     # General info
     name = models.CharField(max_length=64)
@@ -14,7 +14,7 @@ class Session(models.Model):
     date = models.DateField(default=datetime.date.today)
     place = models.CharField(max_length=32, blank=True)
     # Environment conditions
-    grass = models.IntegerField(choices=BOOL_CHOICES, blank=True)
+    grass = models.IntegerField(choices=CHOICES, blank=True)
     wet = models.BooleanField(blank=True)
     temp = models.PositiveIntegerField(blank=True)
     hum = models.PositiveIntegerField(blank=True)
@@ -25,6 +25,9 @@ class Session(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail-session', kwargs={'pk': self.pk})
+
+    def rained(self):
+        return 'It has rained' if self.wet else "It's sunny"
 
 
 class Athlete(models.Model):
@@ -52,7 +55,7 @@ class Sensor(models.Model):
         return "code:{0}".format(str(self.code))
 
     def get_absolute_url(self):
-        return reverse('detail-sensor', kwargs={'pk': self.pk})
+        return reverse('home')
 
 
 class SensorAthlete(models.Model):
@@ -63,6 +66,9 @@ class SensorAthlete(models.Model):
     def __str__(self):
         return "athlete: {1} sensor:{2} position:{0}".format(str(self.position), str(self.id_athlete),
                                                              str(self.id_sensor))
+
+    def get_absolute_url(self):
+        return reverse('home')
 
 
 class AthleteVest(models.Model):

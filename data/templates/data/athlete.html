@@ -9,7 +9,7 @@
                     <a href="{% url 'edit-sensor' sensor.id %}" class="ref"><small class="text-muted">Edit</small></a>
                     <a href="{% url 'del-sensor' sensor.id %}" class="pull-right ref"><small class="text-muted">Delete</small></a>
                 </div>
-                <h2><a class="article-title" href="{% url 'detail-sensor' sensor.id %}">{{ sensor.position }}</a></h2>
+                <h2>{{ sensor.position }}</h2>
 
               </div>
             </article>

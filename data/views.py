@@ -8,6 +8,7 @@ from .models import Athlete
 from .models import AthleteVest
 from .models import Sensor
 from .models import SensorAthlete
+from django.urls import reverse
 
 
 # Create your views here.
@@ -48,37 +49,32 @@ class AthleteView(LoginRequiredMixin, DetailView):
         return context
 
 
-class SensorView(LoginRequiredMixin, DetailView):
-    model = Sensor
-    context_object_name = 'sensor'
-    template_name = 'data/sensor.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(SensorView, self).get_context_data(**kwargs)
-        context['title'] = context['sensor'].code
-        return context
-
-
 class SensorDeleteView(LoginRequiredMixin, DeleteView):
     model = Sensor
+    def get_success_url(self):
+        return reverse('home')
 
 
 class AthleteDeleteView(LoginRequiredMixin, DeleteView):
     model = Athlete
+    def get_success_url(self):
+        return reverse('home')
 
 
 class SessionDeleteView(LoginRequiredMixin, DeleteView):
     model = Session
+    def get_success_url(self):
+        return reverse('home')
 
 
 class SensorCreateView(LoginRequiredMixin, CreateView):
     model = Sensor
-    fields = 'code'
+    fields = ['code']
 
 
 class SensorAssignView(LoginRequiredMixin, CreateView):
-    model = Sensor
-    fields = 'code'
+    model = SensorAthlete
+    fields = ['id_athlete', 'id_sensor', 'position']
 
 
 class SensorAthleteInline(InlineFormSetFactory):
@@ -94,7 +90,7 @@ class AthleteVestInline(InlineFormSetFactory):
 class AthleteCreateView(CreateWithInlinesView):
     model = Athlete
     inlines = [AthleteVestInline, SensorAthleteInline]
-    fields = ['nickname', 'age', 'foot_size', 'weight', 'height', 'data_consent']
+    fields = ['session', 'nickname', 'age', 'foot_size', 'weight', 'height', 'data_consent']
     template_name = 'data/athlete_form.html'
 
 
@@ -117,4 +113,4 @@ class AthleteEditView(UpdateWithInlinesView):
 
 class SensorEditView(LoginRequiredMixin, UpdateView):
     model = Sensor
-    fields = 'code'
+    fields = ['code']
