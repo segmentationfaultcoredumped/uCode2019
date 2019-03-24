@@ -51,18 +51,21 @@ class AthleteView(LoginRequiredMixin, DetailView):
 
 class SensorDeleteView(LoginRequiredMixin, DeleteView):
     model = Sensor
+
     def get_success_url(self):
         return reverse('home')
 
 
 class AthleteDeleteView(LoginRequiredMixin, DeleteView):
     model = Athlete
+
     def get_success_url(self):
         return reverse('home')
 
 
 class SessionDeleteView(LoginRequiredMixin, DeleteView):
     model = Session
+
     def get_success_url(self):
         return reverse('home')
 
